@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">{{ a }}
+        <span v-once>render once: {{ a }}</span>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          a: 1
+        },
+        created() {
+          setInterval(() => {
+            this.a++;
+          },1000);
+        },
+      });
+    </script>
+  </body>
+</html>
