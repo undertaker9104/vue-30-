@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">{{ a }}
+        <button v-on:click="a++">+</button>
+        <div>{{html}}</div>
+        <div v-html="html"></div>
+        <div>
+          <span>{{b}}</span>
+          <button @click.once='click'>b--</button>
+        </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          a: 1,
+          b: 10000,
+          html: '<h1>I am header</h1>',
+        },
+        methods: {
+          click(){
+            this.b--;
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
