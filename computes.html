@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+        <button @click="number++">+</button>
+        <button @click="number--">-</button>
+        <div>
+          <span>Number {{number}} is {{numberEvenOrOdd}}</span>
+        </div>
+        <div>
+            <span>Number {{number}} is {{numberEvenOrOddSetter}}</span>
+            <button @click="numberEvenOrOddSetter='even'">Set Even</button>
+            <button @click="numberEvenOrOddSetter='odd'">Set Odd</button>
+        </div>
+    </div>
+    <script>
+      var vm = new Vue({
+        el: "#app",
+        data: {
+          number: 1
+        },
+        computed: {
+          numberEvenOrOdd(){
+            return this.number % 2 === 0 ? 'even' : 'odd';
+          },
+          numberEvenOrOddArrow: vm => vm.number % 2 === 0 ? 'even' : 'odd',
+          numberEvenOrOddSetter: {
+            get() {
+              return this.number % 2 === 0 ? 'even' : 'odd';
+            },
+            set(evenOrOdd) {
+              if (this.number % 2 === 0) {
+                if(evenOrOdd !== 'even') {
+                  this.number++;
+                  return;
+                }
+              }
+              if(evenOrOdd !== 'odd') this.number++;
+            }
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
